@@ -27,6 +27,8 @@
     "webextension-polyfill": "^0.3.1"
   },
   "devDependencies": {
+    "readline-sync": "^1.4.10",
+    "replace-in-file": "^6.2.0",
     "@babel/core": "^7.1.2",
     "@babel/plugin-proposal-optional-chaining": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
