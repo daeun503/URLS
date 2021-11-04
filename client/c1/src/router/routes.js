@@ -4,6 +4,7 @@ import Dashboard from '../views/components/Dashboard';
 import Login from '../views/components/Login';
 import Option from '../views/components/Url';
 import Releases from '../views/components/Releases';
+import Workspace from '../views/components/Workspace';
 
 export default [
   {
@@ -29,6 +30,12 @@ export default [
     name: 'URL 입력',
     path: '/inject',
     component: Option,
+  },
+  {
+    icon: 'el-icon-s-platform',
+    name: '내 공간',
+    path: '/workspace',
+    component: Workspace,
   },
   {
     icon: 'el-icon-bell',

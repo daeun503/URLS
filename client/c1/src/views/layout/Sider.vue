@@ -24,6 +24,7 @@
 import showdown from 'showdown';
 import mainApi from '../../api/mainApi';
 import routes from '../../router/routes';
+import {mixin} from '../../utils/mixin';
 
 const converter = new showdown.Converter();
 
@@ -33,6 +34,7 @@ export default {
       routes,
       checkedReleasesIds: [],
       fetchedReleases: [],
+      urls: [],
     };
   },
 
@@ -41,38 +43,39 @@ export default {
       this.checkedReleasesIds = this.$store.getters.getCheckedReleasesIds;
     },
 
+    async fetchWorkSpace() {
+      this.loading = true;
+      const response = await mainApi.getWorkspace();
+      const payload = {
+        urls: response.data,
+      };
+      this.save(payload, 'updated');
+      this.loading = false;
+    },
+
     async fetchReleaseNotes() {
       this.loading = true;
-      try {
-        const resp = await mainApi.getRelease();
-        if (resp) {
-          this.fetchedReleases = resp.data.map(release => ({
-            body: release.body,
-            html: converter.makeHtml(release.body),
-            created_at: release.created_at,
-            published_at: release.published_at,
-            id: release.id,
-            name: release.name,
-            tag_name: release.tag_name,
-          }));
-          console.log('fetchedReleases :', this.fetchedReleases);
+      const resp = await mainApi.getRelease();
+      if (resp) {
+        this.fetchedReleases = resp.data.map(release => ({
+          body: release.body,
+          html: converter.makeHtml(release.body),
+          created_at: release.created_at,
+          published_at: release.published_at,
+          id: release.id,
+          name: release.name,
+          tag_name: release.tag_name,
+        }));
+        console.log('fetchedReleases :', this.fetchedReleases);
 
-          await chrome.storage.sync.set(
-            {
-              fetchedReleases: this.fetchedReleases,
-            },
-            () => {
-              this.$root.$emit('updated');
-            },
-          );
-        } else {
-          throw new Error('No resp');
-        }
-      } catch (e) {
-        console.error(e);
-      } finally {
-        this.loading = false;
+        const payload = {
+          fetchedReleases: this.fetchedReleases,
+        };
+        this.save(payload, 'updated');
+      } else {
+        throw new Error('No resp');
       }
+      this.loading = false;
     },
   },
 
@@ -88,7 +91,7 @@ export default {
 
   created() {
     this.fetchReleaseNotes();
-
+    this.fetchWorkSpace();
     this.initComponent();
     this.$root.$on('loaded:sider', () => {
       this.initComponent();
@@ -98,6 +101,7 @@ export default {
   beforeDestroy() {
     this.$root.$off('loaded:sider');
   },
+  mixins: [mixin],
 };
 </script>
 

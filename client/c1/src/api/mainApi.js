@@ -30,4 +30,39 @@ export default {
       .then(res => res)
       .catch(error => error);
   },
+
+  getWorkspace() {
+    // axios
+    //   .get('/folder')
+    //   .then(res => res)
+    //   .catch(error => error);
+
+    return {
+      data: [
+        {
+          type: 'type',
+          title: '안녕하세요',
+          url: 'https://www.naver.com',
+        },
+
+        {
+          type: 'type',
+          title: '안녕하세요',
+          url: 'https://www.naver.com',
+        },
+
+        {
+          type: 'type',
+          title: '안녕하세요',
+          url: 'https://www.naver.com',
+        },
+
+        {
+          type: 'type',
+          title: '안녕하세요',
+          url: 'https://www.naver.com',
+        },
+      ],
+    };
+  },
 };
