@@ -66,7 +66,6 @@ export default {
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
 @import '../style/global.scss';
-@import '../style/normalize.scss';
 
 #app {
   font-family: 'Noto Sans KR', sans-serif;
@@ -98,9 +97,7 @@ export default {
     }
   }
 }
-</style>
 
-<style lang="scss">
 @import '../style/global.scss';
 
 .el-aside {
