@@ -1,96 +1,69 @@
 <template>
-  <div id="about">
-    <div class="info">
-      <!--      <img class="logo" src="/icons/icon128.png" />-->
-      <h2 class="logo-title">{{ manifest.name }} v{{ manifest.version }}</h2>
-      <p class="logo-description">정보를 스마트하게 저장하는 방법</p>
-    </div>
-    <div class="developer">
-      <h3 class="developer-title">지원 및 개발자 정보</h3>
-      <div class="tab-info">
-        <div class="tab-item">
-          <a href="https://k5b201.p.ssafy.io/" target="_blank">
-            <el-button icon="el-icon-s-flag" circle></el-button>
-          </a>
-          <br />
-          <span class="item-title">웹사이트</span>
-        </div>
-
-        <div class="tab-item">
-          <a href="https://lab.ssafy.com/s05-final/S05P31B201" target="_blank">
-            <el-button circle>
-              <img class="github-logo" src="/icons/github.png" />
-            </el-button>
-          </a>
-          <br />
-          <span class="item-title">GitLab</span>
-        </div>
+  <div id="option">
+    <template v-if="this.getToken && this.getUsername"
+      ><div>토큰이 있다.</div>
+      <div>
+        <p>{{ this.getToken }}</p>
+        <p>{{ this.getUsername }}</p>
+        <button @click="deleteToken">토큰 초기화</button>
       </div>
-    </div>
-    <br />
-    <br />
-    <div class="status">현재 서버 상태: {{ requestServerStatus() }}</div>
+    </template>
+    <template v-else
+      ><div>토큰이 없다.</div>
+      <div>
+        <p>{{ this.getToken }}</p>
+        <p>{{ this.getUsername }}</p>
+        <button @click="newToken">토큰 생성</button>
+      </div></template
+    >
   </div>
 </template>
 
 <script>
-import manifest from '../../manifest.json';
-import MainApi from '../../api/mainApi';
+import {mapGetters} from 'vuex';
+import {mixin} from '../../utils/mixin';
 
 export default {
   data() {
     return {
-      manifest,
-      status: false,
+      username: null,
+      token: null,
+      saved: false,
     };
   },
+
+  computed: {
+    ...mapGetters(['getUsername', 'getToken']),
+  },
+
   methods: {
-    async requestServerStatus() {
-      return MainApi.getServerStatus();
+    initComponent() {
+      this.username = this.$store.getters.getUsername;
+      this.token = this.$store.getters.getToken;
     },
+    newToken() {
+      const payload = {
+        username: 'keelim',
+        token: 'hello-token',
+      };
+      this.save(payload, 'updated');
+    },
+    deleteToken() {
+      const payload = {
+        username: null,
+        token: null,
+      };
+      this.save(payload, 'updated');
+    },
+    signIn() {},
   },
-  created() {
-    this.requestServerStatus();
-  },
+
+  mixins: [mixin],
 };
 </script>
 
 <style lang="scss" scoped>
-#about {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  vertical-align: middle;
-  text-align: center;
-
-  .info {
-    .logo {
-      width: 72px;
-      height: 72px;
-    }
-
-    .logo-title {
-      margin: 0;
-    }
-
-    .logo-description {
-      margin: 0;
-    }
-  }
-
-  .developer {
-    .tab-info {
-      display: flex;
-
-      .tab-item {
-        flex: 1;
-
-        .github-logo {
-          width: 14px;
-          height: 14px;
-        }
-      }
-    }
-  }
+#option {
+  position: relative;
 }
 </style>
