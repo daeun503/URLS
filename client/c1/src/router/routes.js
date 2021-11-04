@@ -25,9 +25,9 @@ export default [
     component: Login,
   },
   {
-    icon: 'el-icon-setting',
-    name: '옵션',
-    path: '/option',
+    icon: 'el-icon-s-promotion',
+    name: 'URL 입력',
+    path: '/inject',
     component: Option,
   },
   {
