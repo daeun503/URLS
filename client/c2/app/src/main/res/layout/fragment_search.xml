@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright (c) 2019 Google Inc.
 
   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
@@ -12,8 +11,7 @@
   or implied. See the License for the specific language governing permissions and limitations under
   the License.
   -->
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -34,7 +32,7 @@
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:scrollbars="vertical"
-            tools:listitem="@layout/item_search"/>
+            tools:listitem="@layout/item_search" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

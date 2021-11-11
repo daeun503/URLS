@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.keelim.free.ui.main.dash.search;
+package com.keelim.free.ui.main.dash.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -38,16 +38,24 @@ class SearchAdapter : ListAdapter<Topic, SearchAdapter.SearchViewHolder>(diffUti
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
-        return SearchViewHolder(ItemSearchBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return SearchViewHolder(
+            ItemSearchBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         holder.bind(currentList[position])
     }
 
-    companion object{
+    companion object {
         object diffUtil : DiffUtil.ItemCallback<Topic>() {
-            override fun areItemsTheSame(oldItem: Topic, newItem: Topic) = oldItem.name == newItem.name
+            override fun areItemsTheSame(oldItem: Topic, newItem: Topic) =
+                oldItem.name == newItem.name
+
             override fun areContentsTheSame(oldItem: Topic, newItem: Topic) = oldItem == newItem
         }
     }

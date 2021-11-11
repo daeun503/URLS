@@ -20,9 +20,9 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
-    private var _binding:FragmentSearchBinding? = null
+    private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
-    private val viewModel:SearchViewModel by viewModels()
+    private val viewModel: SearchViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,7 +43,7 @@ class SearchFragment : Fragment() {
         _binding = null
     }
 
-    private fun initViews() = with(binding){
+    private fun initViews() = with(binding) {
         searchResults.apply {
             itemAnimator = SpringAddItemAnimator()
             setHasFixedSize(true)
@@ -57,9 +57,9 @@ class SearchFragment : Fragment() {
     }
 
     private fun observeState() = lifecycleScope.launch {
-        repeatOnLifecycle(Lifecycle.State.STARTED){
+        repeatOnLifecycle(Lifecycle.State.STARTED) {
             viewModel.state.collect {
-                when(it){
+                when (it) {
                     is DataState.Error -> Unit
                     DataState.Loading -> Unit
                     is DataState.Success -> Unit

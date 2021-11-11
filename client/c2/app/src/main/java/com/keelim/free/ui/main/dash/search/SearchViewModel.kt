@@ -13,11 +13,11 @@ import kotlinx.coroutines.launch
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val urlUseCase: UrlUseCase
-): ViewModel() {
-    private val _state:MutableStateFlow<DataState> = MutableStateFlow(DataState.UnInitialized)
-    val state:StateFlow<DataState> = _state
+) : ViewModel() {
+    private val _state: MutableStateFlow<DataState> = MutableStateFlow(DataState.UnInitialized)
+    val state: StateFlow<DataState> = _state
 
-    fun search(query:String) = viewModelScope.launch {
+    fun search(query: String) = viewModelScope.launch {
         _state.emit(DataState.Loading)
         runCatching {
 //        urlUseCase.search(query)

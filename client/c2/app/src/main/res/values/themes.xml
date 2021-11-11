@@ -18,6 +18,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
     <style name="URLS">
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/owl_blue_800</item>
