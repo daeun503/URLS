@@ -123,10 +123,12 @@ class MenuActivity : AppCompatActivity() {
         navController().addOnDestinationChangedListener{ _, destination, _ ->
             when(destination.id){
                 R.id.nav_home -> {
-                    barBinding.appbarLayout.visibility = View.VISIBLE
+                    barBinding.searchBar.visibility = View.VISIBLE
+                    barBinding.titleToolbar.visibility = View.INVISIBLE
                 }
                 else ->{
-                    barBinding.appbarLayout.visibility = View.GONE
+                    barBinding.searchBar.visibility = View.INVISIBLE
+                    barBinding.titleToolbar.visibility = View.VISIBLE
                 }
             }
         }

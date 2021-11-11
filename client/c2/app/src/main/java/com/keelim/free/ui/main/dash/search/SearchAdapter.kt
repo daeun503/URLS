@@ -14,34 +14,31 @@
  * limitations under the License.
  */
 
-package com.keelim.free.ui.main.dash.search
+package com.keelim.free.ui.main.dash.search;
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.keelim.free.databinding.ItemSearchDetailBinding
+import com.keelim.data.model.Topic
+import com.keelim.free.databinding.ItemSearchBinding
 
-class SearchAdapter(
-    private val click: (String) -> Unit,
-) : ListAdapter<String, SearchAdapter.SearchViewHolder>(diffUtil) {
-
-
+class SearchAdapter : ListAdapter<Topic, SearchAdapter.SearchViewHolder>(diffUtil) {
     inner class SearchViewHolder(
-        private val binding: ItemSearchDetailBinding,
+        private val binding: ItemSearchBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(topic: String) {
-            binding.name.setOnClickListener {
+        fun bind(topic: Topic) {
+            binding.run {
+                this.topic = topic
+                executePendingBindings()
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
-        return SearchViewHolder(ItemSearchDetailBinding.inflate(LayoutInflater.from(parent.context),
-            parent,
-            false))
+        return SearchViewHolder(ItemSearchBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
@@ -49,20 +46,9 @@ class SearchAdapter(
     }
 
     companion object{
-        val diffUtil = object : DiffUtil.ItemCallback<String>() {
-            override fun areItemsTheSame(
-                oldItem: String,
-                newItem: String,
-            ): Boolean {
-                return oldItem == newItem
-            }
-
-            override fun areContentsTheSame(
-                oldItem: String,
-                newItem: String,
-            ): Boolean {
-                return oldItem==newItem
-            }
+        object diffUtil : DiffUtil.ItemCallback<Topic>() {
+            override fun areItemsTheSame(oldItem: Topic, newItem: Topic) = oldItem.name == newItem.name
+            override fun areContentsTheSame(oldItem: Topic, newItem: Topic) = oldItem == newItem
         }
     }
 }
