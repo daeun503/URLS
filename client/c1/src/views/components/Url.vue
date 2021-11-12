@@ -1,6 +1,6 @@
 <template>
   <div id="option">
-    <template v-if="getUsername && getToken"
+    <template v-if="this.getUsername && this.getToken"
       ><el-row>
         <el-form
           ref="form"

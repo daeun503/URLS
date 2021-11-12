@@ -6,14 +6,7 @@
         :key="route.name"
         :index="route.path"
       >
-        <el-badge
-          v-if="route.needBadge && hasNewRelease"
-          is-dot
-          class="sider-badge"
-        >
-          <i :class="route.icon"></i>
-        </el-badge>
-        <i v-else :class="route.icon"></i>
+        <i :class="route.icon"></i>
         <span>{{ route.name }}</span>
       </el-menu-item>
     </el-menu>
@@ -56,7 +49,7 @@ export default {
     async fetchReleaseNotes() {
       this.loading = true;
       const resp = await mainApi.getRelease();
-      if (resp) {
+      if (resp && resp.data) {
         this.fetchedReleases = resp.data.map(release => ({
           body: release.body,
           html: converter.makeHtml(release.body),
