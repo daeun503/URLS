@@ -1,9 +1,7 @@
 import About from '../views/components/About';
-import Account from '../views/components/Account';
-import Dashboard from '../views/components/Dashboard';
 import Login from '../views/components/Login';
-import Option from '../views/components/Url';
 import Releases from '../views/components/Releases';
+import Option from '../views/components/Url';
 import Workspace from '../views/components/Workspace';
 
 export default [
