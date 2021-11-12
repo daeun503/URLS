@@ -75,7 +75,7 @@ const config = {
       filename: '[name].css',
     }),
     new CopyWebpackPlugin([
-      {from: 'icons', to: 'icons', ignore: ['icon.xcf']},
+      {from: 'icons', to: 'icons'},
       // {from: 'lib', to: 'lib'},
       // {from: 'hoverTools', to: 'hoverTools'},
       // {from: 'contentScripts', to: 'contentScripts'},
