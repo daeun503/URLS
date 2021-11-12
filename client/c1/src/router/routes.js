@@ -8,21 +8,9 @@ import Workspace from '../views/components/Workspace';
 
 export default [
   {
-    icon: 'el-icon-odometer',
-    name: '대시보드',
-    path: '/',
-    component: Dashboard,
-  },
-  {
-    icon: 'el-icon-user',
-    name: '계정',
-    path: '/account',
-    component: Account,
-  },
-  {
     icon: 'el-icon-setting',
     name: '로그인',
-    path: '/login',
+    path: '/',
     component: Login,
   },
   {
