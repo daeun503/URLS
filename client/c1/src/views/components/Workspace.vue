@@ -21,7 +21,7 @@
         <i class="el-icon-s-promotion icon"></i>
         <h2>URL 입력은 로그인을 해야 가능합니다.</h2>
         <p>로그인을 진행해주세요</p>
-        <router-link to="/login">
+        <router-link to="/">
           <el-button>바로가기</el-button>
         </router-link>
       </div>
