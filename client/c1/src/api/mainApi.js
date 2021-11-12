@@ -16,11 +16,8 @@ export default {
       .get(listUrl.release_url)
       .then(res => res)
       .catch(error => error);
-    // TODO
-    // return samples;
   },
   inject(url, token) {
-    // TODO
     return axios
       .post('/inject', {
         url,

@@ -51,13 +51,11 @@ export default {
       const resp = await mainApi.getRelease();
       if (resp && resp.data) {
         this.fetchedReleases = resp.data.map(release => ({
-          body: release.body,
+          body: release.description,
           html: converter.makeHtml(release.body),
-          created_at: release.created_at,
-          published_at: release.published_at,
-          id: release.id,
-          name: release.name,
-          tag_name: release.tag_name,
+          created_at: release.date,
+          id: release.title,
+          name: release.version,
         }));
         console.log('fetchedReleases :', this.fetchedReleases);
 
