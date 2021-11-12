@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {listUrl, samples} from './list_url';
+import {listUrl} from './list_url';
 
 axios.defaults.baseURL = listUrl.baeURL;
 
@@ -12,13 +12,12 @@ export default {
   },
 
   getRelease() {
-    // return axios
-    //   .get(listUrl.release_url)
-    //   .then(res => res)
-    //   .catch(error => error);
-
+    return axios
+      .get(listUrl.release_url)
+      .then(res => res)
+      .catch(error => error);
     // TODO
-    return samples;
+    // return samples;
   },
   inject(url, token) {
     // TODO
@@ -64,5 +63,22 @@ export default {
         },
       ],
     };
+  },
+  signIn(token, email, nickname, avatar) {
+    const config = {
+      headers: {Authorization: `Bearer ${token}`},
+    };
+    return axios
+      .post(
+        '/user',
+        {
+          email,
+          avatar,
+          nickname,
+        },
+        config,
+      )
+      .then(res => res)
+      .catch(error => error);
   },
 };

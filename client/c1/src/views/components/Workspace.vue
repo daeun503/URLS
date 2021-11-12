@@ -1,8 +1,8 @@
 <template>
   <div id="option">
-    <template v-if="getUsername && getToken">
+    <template v-if="this.getUsername && this.getToken">
       <el-card v-for="url in urls" :key="url.id">
-        <div slot="header" class="clearfix">
+        <div styslot="header" class="clearfix">
           <span>{{ url.title }}</span>
           <el-button
             style="float: right; padding: 3px 0"
@@ -12,6 +12,8 @@
           >
           {{ url.type }}
         </div>
+        <div><p></p></div>
+        <div><p></p></div>
       </el-card>
     </template>
     <template v-else>
