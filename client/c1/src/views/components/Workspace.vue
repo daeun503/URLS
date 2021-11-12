@@ -1,20 +1,21 @@
 <template>
   <div id="option">
     <template v-if="this.getUsername && this.getToken">
-      <el-card v-for="url in urls" :key="url.id">
-        <div styslot="header" class="clearfix">
-          <span>{{ url.title }}</span>
-          <el-button
-            style="float: right; padding: 3px 0"
-            type="text"
-            @click="move(url.url)"
-            >이동하기</el-button
-          >
-          {{ url.type }}
-        </div>
-        <div><p></p></div>
-        <div><p></p></div>
-      </el-card>
+      <el-timeline>
+        <el-timeline-item v-for="url in urls" :key="url.id">
+          <el-card :body-style="{padding: '10px'}">
+            <span slot="header">
+              <a :href="url.url" target="_blank">
+                <el-button type="text">
+                  {{ url.url }}
+                </el-button>
+              </a>
+            </span>
+            <h5>{{ url.title }}</h5>
+            <h5>{{ url.type }}</h5>
+          </el-card>
+        </el-timeline-item>
+      </el-timeline>
     </template>
     <template v-else>
       <div class="no-info">
