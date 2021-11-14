@@ -26,25 +26,50 @@ chrome.storage.sync.get('color', values => {
   chrome.contextMenus.update(color, {checked: true});
 });
 
+async function getFromStorage(key) {
+  return new Promise((resolve, reject) => {
+    chrome.storage.sync.get(key, resolve);
+  })
+    .then(result => {
+      if (key == null) return result;
+      return result[key];
+    })
+    .catch(error => error);
+}
+
+async function serverCheck() {
+  const baseURL = 'http://k5b201.p.ssafy.io:4000';
+  const config = {
+    method: 'GET',
+    headers: {'Content-Type': 'application/json;'},
+  };
+  return fetch(`${baseURL}/user`, config)
+    .then(result => result)
+    .catch(error => error);
+}
+
 // 백그라운드 로직 처리 => 비동기적인 상황(promise)
-chrome.runtime.onMessage.addListener((request, _sender, _sendResponse) => {
-  if (request.action && request.action === 'highlight') {
-    chrome.tabs
-      .executeScript({file: 'contentScripts/highlight.js'})
-      .then(result => result);
-  } else if (request.action && request.action === 'serverCheck') {
-    const baseURL = 'http://k5b201.p.ssafy.io:4000';
-    const config = {
-      method: 'GET',
-      headers: {'Content-Type': 'application/json;'},
-    };
-    fetch(`${baseURL}/user`, config)
-      .then(result => {
-        const status = result.status === 200 ? 'Live' : 'Dead';
-        alert(`서버 상태는 ${status}`);
-      })
-      .catch(error => {
-        alert(error);
-      });
+chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
+  if (request.action) {
+    if (request.action === 'highlight') {
+      chrome.tabs
+        .executeScript({file: 'contentScripts/highlight.js'})
+        .then(result => result);
+    } else if (request.action === 'serverCheck') {
+      const response = await serverCheck();
+      const status = response.status === 200 ? 'Live' : 'Dead';
+      alert(`Server status${status}`);
+      sendResponse({result: response.status === 200});
+    } else if (request.action === 'tokenCheck') {
+      const token = await getFromStorage('token');
+      alert(token);
+      if (token) {
+        sendResponse({result: true, token});
+      } else {
+        sendResponse({result: false, token: ''});
+      }
+    } else if (request.action === 'error') {
+      alert('서버와 통신이 잡히지 않아 공유하기가 힘듭니다.');
+    }
   }
 });

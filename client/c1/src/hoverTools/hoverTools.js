@@ -136,7 +136,13 @@ function onChangeColorBtnClicked() {
 }
 
 function onShareBtnClicked() {
-  chrome.runtime.sendMessage({action: 'serverCheck'});
+  chrome.runtime.sendMessage({action: 'serverCheck'}, response => {
+    if (response.result) {
+      chrome.runtime.sendMessage({action: 'tokenCheck'});
+    } else {
+      chrome.runtime.sendMessage({action: 'error'});
+    }
+  });
 }
 
 $.get(chrome.extension.getURL('hoverTools/hoverTools.html'), data => {
