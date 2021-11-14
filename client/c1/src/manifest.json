@@ -28,8 +28,7 @@
         "utils/storageManager.js",
         "utils/highlight.js",
         "hoverTools/hoverTools.js",
-        "contentScripts/loadHighlights.js",
-        "contentScripts/highlighterCursor.js"
+        "contentScripts/scriptHighlight.js"
       ],
       "css": ["hoverTools/hoverTools.css"],
       "all_frames": true

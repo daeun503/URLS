@@ -22,7 +22,7 @@ chrome.contextMenus.create({
 });
 
 chrome.storage.sync.get('color', values => {
-  const color = values.color ? values.color : 'yellow';
+  const color = values.color || 'yellow';
   chrome.contextMenus.update(color, {checked: true});
 });
 
