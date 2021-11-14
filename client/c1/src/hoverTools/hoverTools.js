@@ -136,7 +136,7 @@ function onChangeColorBtnClicked() {
 }
 
 function onShareBtnClicked() {
-  alert('공유하겠습니다.');
+  chrome.runtime.sendMessage({action: 'serverCheck'});
 }
 
 $.get(chrome.extension.getURL('hoverTools/hoverTools.html'), data => {
@@ -155,7 +155,6 @@ $.get(chrome.extension.getURL('hoverTools/hoverTools.html'), data => {
   shareBtnEl.addEventListener('click', onShareBtnClicked);
 });
 
-// Allow clicking outside of a highlight to unselect
 window.addEventListener('click', e => {
   if (e.target.classList.contains('highlighter--highlighted')) return;
   if (e.target.classList.contains('highlighter--icon-change-color')) return;
