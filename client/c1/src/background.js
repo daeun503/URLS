@@ -10,7 +10,7 @@ chrome.contextMenus.create({
 });
 
 chrome.contextMenus.create({
-  title: 'Toggle Cursor',
+  title: '하이라이트를 클릭해주세요!!',
   onclick: () => {
     chrome.tabs
       .executeScript({
