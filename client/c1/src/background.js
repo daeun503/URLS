@@ -1,33 +1,24 @@
-function highlightText() {
-  chrome.tabs
-    .executeScript({file: 'contentScripts/highlight.js'})
-    .then(result => result);
-}
-
-function highlightTextFromContext() {
-  highlightText();
-}
-
-function toggleHighlighterCursor() {
-  chrome.tabs
-    .executeScript({
-      file: 'contentScripts/toggleHighlighterCursor.js',
-    })
-    .then(result => result);
-}
-
-function toggleHighlighterCursorFromContext() {
-  toggleHighlighterCursor();
-}
-
 chrome.contextMenus.create({
   title: 'Urls에서 관리하기',
-  onclick: highlightTextFromContext,
+  onclick: () => {
+    chrome.tabs
+      .executeScript({file: 'contentScripts/highlight.js'})
+      .then(result => result)
+      .catch(error => error);
+  },
   contexts: ['selection'],
 });
+
 chrome.contextMenus.create({
   title: 'Toggle Cursor',
-  onclick: toggleHighlighterCursorFromContext,
+  onclick: () => {
+    chrome.tabs
+      .executeScript({
+        file: 'contentScripts/toggleHighlighterCursor.js',
+      })
+      .then(result => result)
+      .catch(error => error);
+  },
 });
 
 chrome.storage.sync.get('color', values => {
@@ -38,7 +29,9 @@ chrome.storage.sync.get('color', values => {
 // 백그라운드 로직 처리 => 비동기적인 상황(promise)
 chrome.runtime.onMessage.addListener((request, _sender, _sendResponse) => {
   if (request.action && request.action === 'highlight') {
-    highlightText();
+    chrome.tabs
+      .executeScript({file: 'contentScripts/highlight.js'})
+      .then(result => result);
   } else if (request.action && request.action === 'serverCheck') {
     const baseURL = 'http://k5b201.p.ssafy.io:4000';
     const config = {
