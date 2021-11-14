@@ -35,6 +35,13 @@
       "all_frames": true
     }
   ],
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y"
+      }
+    }
+  },
 
   "background": {
     "scripts": ["background.js"]
