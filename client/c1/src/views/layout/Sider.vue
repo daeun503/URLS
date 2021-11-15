@@ -27,13 +27,16 @@ export default {
       routes,
       checkedReleasesIds: [],
       fetchedReleases: [],
+      folders: [],
       urls: [],
+      token: '',
     };
   },
 
   methods: {
     initComponent() {
       this.checkedReleasesIds = this.$store.getters.getCheckedReleasesIds;
+      this.token = this.$store.getters.getToken;
     },
 
     async fetchWorkSpace() {
@@ -44,6 +47,24 @@ export default {
       };
       this.save(payload, 'updated');
       this.loading = false;
+    },
+    async fetchFolders() {
+      this.loading = true;
+      const response = await mainApi.getFolders();
+      if (response && response.data) {
+        this.folders = response.data.map(folder => ({
+          folder_id: folder.folder_id,
+          folder_name: folder.folder_name,
+          shared: folder.shared,
+        }));
+      }
+      console.log('fetchFolder :', this.folders);
+      this.save(
+        {
+          folders: this.folders,
+        },
+        'updated',
+      );
     },
 
     async fetchReleaseNotes() {
@@ -84,6 +105,8 @@ export default {
     this.fetchReleaseNotes();
     this.fetchWorkSpace();
     this.initComponent();
+    this.fetchFolders();
+
     this.$root.$on('loaded:sider', () => {
       this.initComponent();
     });

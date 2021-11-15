@@ -35,8 +35,8 @@
               <el-select v-model="total" placeholder="기본 폴더를 선택해주세요">
                 <el-option-group label="나의 폴더들">
                   <el-option
-                    v-for="folder in folders"
-                    :key="folder.folder_name"
+                    v-for="(folder, index) in folders"
+                    :key="index"
                     :label="folder.folder_name"
                     :value="folder"
                   >

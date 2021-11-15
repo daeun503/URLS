@@ -1,5 +1,6 @@
 import About from '../views/components/About';
 import Login from '../views/components/Login';
+import MyFolder from '../views/components/MyFolder';
 import Releases from '../views/components/Releases';
 import Option from '../views/components/Url';
 import Workspace from '../views/components/Workspace';
@@ -22,6 +23,12 @@ export default [
     name: '내 공간',
     path: '/workspace',
     component: Workspace,
+  },
+  {
+    icon: 'el-icon-s-platform',
+    name: '나의 폴더',
+    path: '/folders',
+    component: MyFolder,
   },
   {
     icon: 'el-icon-bell',

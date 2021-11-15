@@ -77,7 +77,7 @@ export default {
   },
   getFolders(token) {
     return axios
-      .get('/folder/me', this.provideConfig(token))
+      .get('/other/folders', this.provideConfig(token))
       .then(result => result)
       .catch(error => error);
   },
