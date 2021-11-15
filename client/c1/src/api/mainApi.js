@@ -17,15 +17,6 @@ export default {
       .then(res => res)
       .catch(error => error);
   },
-  inject(url, token) {
-    return axios
-      .post('/inject', {
-        url,
-        token,
-      })
-      .then(res => res)
-      .catch(error => error);
-  },
 
   getWorkspace() {
     // axios
@@ -103,6 +94,13 @@ export default {
         if (key == null) return result;
         return result[key];
       })
+      .catch(error => error);
+  },
+
+  inject(token, folderId, payload) {
+    return axios
+      .post(`/folder/${folderId}/url`, payload, this.provideConfig(token))
+      .then(res => res)
       .catch(error => error);
   },
 };

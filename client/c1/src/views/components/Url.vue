@@ -113,7 +113,11 @@ export default {
       this.folders = this.$store.getters.getFolders;
     },
     async inject() {
-      const response = await mainApi.inject();
+      const token = await mainApi.getFromStorage('token');
+      const response = await mainApi.inject(token, this.total.folder_id, {
+        url: this.url,
+        tags: [this.serviceType],
+      });
       if (response.status === 200) {
         this.saved = true;
       } else {

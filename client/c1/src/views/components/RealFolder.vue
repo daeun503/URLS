@@ -1,66 +1,78 @@
 <template>
   <div id="releases">
-    <template v-if="move">
-      <el-row>
-        <el-timeline>
-          <el-timeline-item
-            v-for="(folder, index) in folders"
-            :key="index"
-            placement="top"
-          >
-            <el-card :body-style="{padding: '10px'}">
-              <span slot="header">
-                <el-button type="text">
-                  {{ index }}. {{ folder.folder_name }}
-                </el-button>
-              </span>
-              <h5>{{ folder.folder_id }}</h5>
-              <div>
-                <el-button
-                  type="text"
-                  @click="change(folder.folder_id, folder.folder_name)"
-                >
-                  이동하기
-                </el-button>
-              </div>
-            </el-card>
-          </el-timeline-item>
-        </el-timeline>
-      </el-row>
-    </template>
-    <template v-else>
-      <h3>{{ this.folders_name }} - {{ this.folders_id }}</h3>
-      <el-row>
-        <el-timeline>
-          <el-timeline-item
-            v-for="(url, index) in urls"
-            :key="index"
-            placement="top"
-          >
-            <el-card :body-style="{padding: '10px'}">
-              <span slot="header">
-                <a :href="url.url" target="_blank">
-                  <el-button type="text" style="margin-left: 10px">
-                    {{ index }}. {{ url.url }}
+    <template v-if="this.getUsername && this.getToken">
+      <template v-if="move">
+        <el-row>
+          <el-timeline>
+            <el-timeline-item
+              v-for="(folder, index) in folders"
+              :key="index"
+              placement="top"
+            >
+              <el-card :body-style="{padding: '10px'}">
+                <span slot="header">
+                  <el-button type="text">
+                    {{ index }}. {{ folder.folder_name }}
                   </el-button>
-                </a>
-              </span>
+                </span>
+                <h5>{{ folder.folder_id }}</h5>
+                <div>
+                  <el-button
+                    type="text"
+                    @click="change(folder.folder_id, folder.folder_name)"
+                  >
+                    이동하기
+                  </el-button>
+                </div>
+              </el-card>
+            </el-timeline-item>
+          </el-timeline>
+        </el-row>
+      </template>
+      <template v-else>
+        <h3>{{ this.folders_name }} - {{ this.folders_id }}</h3>
+        <el-row>
+          <el-timeline>
+            <el-timeline-item
+              v-for="(url, index) in urls"
+              :key="index"
+              placement="top"
+            >
+              <el-card :body-style="{padding: '10px'}">
+                <span slot="header">
+                  <a :href="url.url" target="_blank">
+                    <el-button type="text" style="margin-left: 10px">
+                      {{ index + 1 }}. {{ url.url }}
+                    </el-button>
+                  </a>
+                </span>
 
-              <h5>
-                {{ url.url }}
-              </h5>
-              <a href="https://k5b201.p.ssafy.io/" target="_blank">
-                <el-button> 관리 페이지 이동하기</el-button>
-              </a>
-            </el-card>
-          </el-timeline-item>
-        </el-timeline>
-      </el-row></template
-    >
+                <h5>
+                  {{ url.url }}
+                </h5>
+                <a href="https://k5b201.p.ssafy.io/" target="_blank">
+                  <el-button> 관리 페이지 이동하기</el-button>
+                </a>
+              </el-card>
+            </el-timeline-item>
+          </el-timeline>
+        </el-row></template
+      ></template
+    ><template v-else>
+      <div class="no-info">
+        <i class="el-icon-s-promotion icon"></i>
+        <h2>나의 폴더는 로그인을 해야 가능합니다.</h2>
+        <p>로그인을 진행해주세요</p>
+        <router-link to="/">
+          <el-button>바로가기</el-button>
+        </router-link>
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
 import mainApi from '../../api/mainApi';
 import {mixin} from '../../utils/mixin';
 
@@ -74,6 +86,9 @@ export default {
       move: true,
       urls: [],
     };
+  },
+  computed: {
+    ...mapGetters(['getToken', 'getUsername']),
   },
 
   methods: {
@@ -110,6 +125,18 @@ export default {
 
     /deep/ .el-card__header {
       padding: 0 10px;
+    }
+  }
+  .no-info {
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+    flex-direction: column;
+    text-align: center;
+    height: 230px;
+
+    .icon {
+      font-size: 30px;
     }
   }
 
