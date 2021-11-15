@@ -31,14 +31,14 @@
             label-position="left"
             size="small"
           >
-            <el-form-item label="기본 폴더">
+            <el-form-item label="기본 폴더" @click="saveChange">
               <el-select v-model="total" placeholder="기본 폴더를 선택해주세요">
                 <el-option-group label="나의 폴더들">
                   <el-option
                     v-for="(folder, index) in folders"
                     :key="index"
                     :label="folder.folder_name"
-                    :value="folder"
+                    :value="folder.folder_name"
                   >
                     <span style="float: left">{{ folder.folder_name }}</span>
                   </el-option>
@@ -51,7 +51,12 @@
             size="small"
             @click="saveBasic"
           >
-            <span>기본 폴더 저장</span>
+            <span v-if="saved">
+              <i class="el-icon-check"></i>
+              URL 저장됨
+            </span>
+            <span v-else-if="net_false">네트워크를 확인해주세요</span>
+            <span v-else>기본 폴더 저장</span>
           </el-button>
         </el-row>
       </section>
@@ -85,8 +90,10 @@ export default {
       username: null,
       token: null,
       saved: false,
-      total: null,
+      total: '',
+      net_false: false,
       folders: [],
+      name: '',
     };
   },
 
@@ -110,6 +117,9 @@ export default {
       this.photoURL = this.$store.getters.getPhotoUrl;
       this.total = this.$store.getters.getBasicFolderName;
       this.folders = this.$store.getters.getFolders;
+    },
+    saveChange() {
+      this.save = false;
     },
 
     deleteToken() {
@@ -168,14 +178,16 @@ export default {
       }
     },
     saveBasic() {
-      this.save(
-        {
-          basic: this.total.folder_id,
-          basic_folder_name: this.total.folder_name,
-        },
-        'updated',
-      );
+      const payload = {
+        basic: this.folders.filter(
+          folder => folder.folder_name === this.total,
+        )[0].folder_id,
+        basic_folder_name: this.total,
+      };
+      this.save(payload, 'updated');
+      console.log(payload);
       console.log(`이것이 기본 폴더 입니다 ${this.getBasic}`);
+      this.saved = true;
     },
     async getServerFolders() {
       const response = await mainApi.getFolders(this.token);
@@ -191,6 +203,7 @@ export default {
     },
   },
   mixins: [mixin],
+
   mounted() {
     this.getServerFolders();
   },
