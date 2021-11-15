@@ -75,4 +75,10 @@ export default {
       .then(res => res)
       .catch(error => error);
   },
+  getFolders(token) {
+    return axios
+      .get('/folder/me', this.provideConfig(token))
+      .then(result => result)
+      .catch(error => error);
+  },
 };

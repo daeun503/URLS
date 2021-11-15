@@ -17,6 +17,7 @@ export const store = new Vuex.Store({
     fetchedReleases: [],
     photoURL: null,
     baseURL: 'https://k5b201.p.ssafy.io/',
+    basic: null,
   },
 
   mutations: {},
@@ -67,6 +68,9 @@ export const store = new Vuex.Store({
     },
     getBaseUrl(state) {
       return state.baseURL;
+    },
+    getBasic(state) {
+      return state.basic;
     },
   },
   actions: {},
