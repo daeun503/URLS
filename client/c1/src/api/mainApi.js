@@ -61,20 +61,17 @@ export default {
       ],
     };
   },
-  signIn(token, email, nickname, avatar) {
-    const config = {
-      headers: {Authorization: `Bearer ${token}`},
+  provideConfig(token) {
+    return {
+      headers: {
+        'Content-Type': 'application/json;',
+        Authorization: `Bearer ${token}`,
+      },
     };
+  },
+  signIn(token, payload) {
     return axios
-      .post(
-        '/user',
-        {
-          email,
-          avatar,
-          nickname,
-        },
-        config,
-      )
+      .post('/user', payload, this.provideConfig(token))
       .then(res => res)
       .catch(error => error);
   },

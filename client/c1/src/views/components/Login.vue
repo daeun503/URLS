@@ -110,11 +110,11 @@ export default {
           const credential = GoogleAuthProvider.credentialFromError(error);
         });
 
-      const response = await mainApi.signIn(
-        this.email,
-        this.username,
-        this.photoURL,
-      );
+      const response = await mainApi.signIn(this.token, {
+        email: this.email,
+        avatar: this.photoURL,
+        nickname: this.username,
+      });
       if (response && response.status === 201) {
         console.log('서버 연결 완료');
       } else {
