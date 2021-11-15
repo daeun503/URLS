@@ -32,13 +32,13 @@
             size="small"
           >
             <el-form-item label="기본 폴더">
-              <el-select v-model="basic" placeholder="기본 폴더 저장">
+              <el-select v-model="total" placeholder="기본 폴더를 선택해주세요">
                 <el-option-group label="나의 폴더들">
                   <el-option
                     v-for="folder in folders"
-                    :key="folder.folder_id"
+                    :key="folder.folder_name"
                     :label="folder.folder_name"
-                    :value="folder.folder_id"
+                    :value="folder"
                   >
                     <span style="float: left">{{ folder.folder_name }}</span>
                   </el-option>
@@ -84,7 +84,7 @@ export default {
       username: null,
       token: null,
       saved: false,
-      basic: '',
+      total: null,
       folders: [],
     };
   },
@@ -96,6 +96,8 @@ export default {
       'getEmail',
       'getPhotoUrl',
       'getBasic',
+      'getBasicFolderName',
+      'getFolders',
     ]),
   },
 
@@ -105,7 +107,8 @@ export default {
       this.token = this.$store.getters.getToken;
       this.email = this.$store.getters.getEmail;
       this.photoURL = this.$store.getters.getPhotoUrl;
-      this.basic = this.$store.getters.getBasic;
+      this.total = this.$store.getters.getBasicFolderName;
+      this.folders = this.$store.getters.getFolders;
     },
 
     deleteToken() {
@@ -158,7 +161,7 @@ export default {
       });
       if (response && response.status === 201) {
         console.log('서버 연결 완료');
-        await this.getFolders();
+        await this.getServerFolders();
       } else {
         console.log('서버 연결 실패');
       }
@@ -166,24 +169,30 @@ export default {
     saveBasic() {
       this.save(
         {
-          basic: this.basic,
+          basic: this.total.folder_id,
+          basic_folder_name: this.total.folder_name,
         },
         'updated',
       );
       console.log(`이것이 기본 폴더 입니다 ${this.getBasic}`);
     },
-    async getFolders() {
+    async getServerFolders() {
       const response = await mainApi.getFolders(this.token);
       if (response && response.status === 200) {
         console.log('폴더를 불러왔습니다.');
         this.folders = response.data;
+        this.save({
+          folders: response.data,
+        });
       } else {
         console.log('폴더를 불러오지 못했습니다.');
       }
     },
   },
-
   mixins: [mixin],
+  mounted() {
+    this.getServerFolders();
+  },
 };
 </script>
 
