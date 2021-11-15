@@ -61,13 +61,14 @@
       <div>
         <p>{{ this.getToken }}</p>
         <p>{{ this.getUsername }}</p>
-        <div>
+
+        <el-card :body-style="{padding: '0px'}">
           <img
-            @click="signIn"
-            style="width: 200px; height: 60px;"
             src="/icons/btn_google_signin_dark_disabled_web@2x.png"
+            class="image"
+            @click="signIn"
           />
-        </div></div
+        </el-card></div
     ></template>
   </div>
 </template>
@@ -213,6 +214,35 @@ export default {
     right: 0;
     color: #909399;
     font-size: 1rem;
+  }
+  .time {
+    font-size: 13px;
+    color: #999;
+  }
+
+  .bottom {
+    margin-top: 13px;
+    line-height: 12px;
+  }
+
+  .button {
+    padding: 0;
+    float: right;
+  }
+
+  .image {
+    width: 100%;
+    display: block;
+  }
+
+  .clearfix:before,
+  .clearfix:after {
+    display: table;
+    content: '';
+  }
+
+  .clearfix:after {
+    clear: both;
   }
 }
 </style>

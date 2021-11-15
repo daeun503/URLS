@@ -48,9 +48,31 @@ export default {
       this.save(payload, 'updated');
       this.loading = false;
     },
+
     async fetchFolders() {
       this.loading = true;
-      const response = await mainApi.getFolders();
+      this.token = this.getFromStorage('token');
+      const response = await mainApi.getFolders(this.token);
+      if (response && response.data) {
+        this.folders = response.data.map(folder => ({
+          folder_id: folder.folder_id,
+          folder_name: folder.folder_name,
+          shared: folder.shared,
+        }));
+      }
+      console.log(response);
+      console.log('fetchFolder :', this.folders);
+      this.save(
+        {
+          folders: this.folders,
+        },
+        'updated',
+      );
+    },
+
+    async fetchTestFolders() {
+      this.loading = true;
+      const response = await mainApi.getFoldersTest();
       if (response && response.data) {
         this.folders = response.data.map(folder => ({
           folder_id: folder.folder_id,
@@ -105,11 +127,11 @@ export default {
     this.fetchReleaseNotes();
     this.fetchWorkSpace();
     this.initComponent();
-    this.fetchFolders();
-
+    // this.fetchTestFolders();
     this.$root.$on('loaded:sider', () => {
       this.initComponent();
     });
+    this.fetchFolders();
   },
 
   beforeDestroy() {

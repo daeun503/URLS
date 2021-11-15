@@ -75,10 +75,34 @@ export default {
       .then(res => res)
       .catch(error => error);
   },
-  getFolders(token) {
+  getFoldersTest(token) {
     return axios
       .get('/other/folders', this.provideConfig(token))
       .then(result => result)
+      .catch(error => error);
+  },
+
+  getFolders(token) {
+    return axios
+      .get('/folder/me', this.provideConfig(token))
+      .then(result => result)
+      .catch(error => error);
+  },
+
+  getUrls(token, folderId) {
+    return axios
+      .get(`/folder/${folderId}`, this.provideConfig(token))
+      .then(result => result)
+      .catch(error => error);
+  },
+  async getFromStorage(key) {
+    return new Promise((resolve, reject) => {
+      chrome.storage.sync.get(key, resolve);
+    })
+      .then(result => {
+        if (key == null) return result;
+        return result[key];
+      })
       .catch(error => error);
   },
 };

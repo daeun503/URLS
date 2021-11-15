@@ -111,7 +111,6 @@ export default {
     initComponent() {
       this.total = this.$store.getters.getBasicFolderName;
       this.folders = this.$store.getters.getFolders;
-      this.token = this.$store.getters.getToken;
     },
     async inject() {
       const response = await mainApi.inject();
