@@ -16,6 +16,8 @@ import androidx.navigation.ui.setupWithNavController
 import coil.load
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.keelim.free.R
 import com.keelim.free.databinding.ActivityMenuBinding
 import com.keelim.free.databinding.AppBarMenuBinding
@@ -35,6 +37,8 @@ class MenuActivity : AppCompatActivity() {
     private val barBinding: AppBarMenuBinding by lazy {
         AppBarMenuBinding.bind(binding.appBarMenu.root)
     }
+
+    private val auth by lazy { Firebase.auth.currentUser!!}
 
     private lateinit var injectFragment2: InjectFragment2
 
@@ -97,16 +101,12 @@ class MenuActivity : AppCompatActivity() {
 
     private fun initViews() = with(binding) {
         injectFragment2 = InjectFragment2.show(supportFragmentManager, R.id.view_bottom_sheet)
-        headerBinding.imageView.load("https://avatars.githubusercontent.com/u/26667456?v=4")
-
-//        appBarMenu.fab.setOnClickListener { view ->
-//            startActivity(Intent(this@MenuActivity, OpenActivity::class.java), ActivityOptionsCompat.makeSceneTransitionAnimation(
-//                this@MenuActivity,
-//                view,
-//                ViewCompat.getTransitionName(view)!!
-//            ).toBundle())
-//        }
-
+        with(headerBinding){
+            imageView.load(auth.photoUrl)
+            headerUsername.text = auth.displayName
+            headerEmail.text = auth.email
+        }
+        
         val radius = 128f
         val navViewBackground = binding.navView.background as MaterialShapeDrawable
         navViewBackground.shapeAppearanceModel = navViewBackground.shapeAppearanceModel

@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="내차 팔땐, 헤이딜러"
+            android:text="Url을 한번 입력해볼까요?"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,13 +31,13 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:gravity="center_horizontal"
-            app:cardBackgroundColor="@color/blue"
+            app:cardBackgroundColor="@color/orange"
             app:cardCornerRadius="4dp"
             app:cardElevation="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:rippleColor="@color/white">
+            app:rippleColor="@color/orange_w">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -48,7 +48,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="알아보기"
+                    android:text="입력하기"
                     android:textColor="@color/white" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

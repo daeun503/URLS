@@ -1,6 +1,7 @@
 package com.keelim.free.ui.setting
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -50,11 +51,9 @@ class AboutFragment : Fragment() {
                 releaseChannelTextView.text = getString(R.string.alpha)
             }
         }
-        github.setOnClickListener {
+        gitlab.setOnClickListener {
             Intent(Intent.ACTION_VIEW).apply {
-//                findNavController().navigate(
-//                    AboutFragmentDirections.actionAboutFragmentToWebFragment(getString(R.string.github))
-//                )
+                Uri.parse("https://lab.ssafy.com/s05-final/S05P31B201")
             }
         }
 
