@@ -1,6 +1,7 @@
 package com.keelim.free.ui.setting
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -39,22 +40,29 @@ class SettingFragment : BottomSheetDialogFragment() {
         click()
     }
 
-    private fun click() {
-        binding.themeOption.setOnClickListener {
-            dismiss()
-        }
+    override fun getTheme(): Int {
+        return R.style.CustomBottomSheetDialog
+    }
 
-        binding.aboutButton.setOnClickListener {
+    private fun click() = with(binding){
+        aboutButton.setOnClickListener {
             dismiss()
             findNavController().navigate(R.id.aboutFragment)
         }
 
-        binding.inject.setOnClickListener {
+        homepage.setOnClickListener {
             dismiss()
             startActivity(Intent(requireActivity(), InjectActivity::class.java))
         }
 
-        binding.openSourceLicensesButton.setOnClickListener {
+        signOut.setOnClickListener{
+            dismiss()
+            startActivity(Intent(Intent.ACTION_VIEW).apply {
+                Uri.parse(getString(R.string.git_lab_address))
+            })
+        }
+
+        openSourceLicensesButton.setOnClickListener {
             dismiss()
             requireActivity().startActivity(
                 Intent(

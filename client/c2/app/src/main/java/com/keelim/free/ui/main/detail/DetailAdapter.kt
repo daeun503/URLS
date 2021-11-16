@@ -1,6 +1,7 @@
 package com.keelim.free.ui.main.detail
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -20,7 +21,11 @@ class DetailAdapter(
             move.setOnClickListener {
                 click_move(item)
             }
-            thumbnail.load(item.thumbnail)
+            if(item.thumbnail.isEmpty()){
+                thumbnail.visibility = View.GONE
+            } else{
+                thumbnail.load(item.thumbnail)
+            }
             memo.setOnClickListener {
                 click_memo(item.memos_id)
             }

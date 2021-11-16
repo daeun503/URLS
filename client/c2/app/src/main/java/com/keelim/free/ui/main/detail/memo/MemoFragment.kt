@@ -12,6 +12,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.keelim.data.model.MemoState
+import com.keelim.free.R
 import com.keelim.free.databinding.FragmentMemoBinding
 import com.keelim.free.util.SpringAddItemAnimator
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,6 +46,10 @@ class MemoFragment @Inject constructor(
         viewModel.init(memoId)
     }
 
+    override fun getTheme(): Int {
+        return R.style.CustomBottomSheetDialog
+    }
+
     private fun initViews() = with(binding){
         memoRecycler.apply {
             itemAnimator = SpringAddItemAnimator()
@@ -75,5 +80,4 @@ class MemoFragment @Inject constructor(
             }
         }
     }
-
 }
