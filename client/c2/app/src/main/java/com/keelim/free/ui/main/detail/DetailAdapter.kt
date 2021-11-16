@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.keelim.data.model.open.Url
 import com.keelim.free.databinding.ItemDetailBinding
+import com.keelim.free.ui.main.detail.memo.MemoFragment
 
 class DetailAdapter(
     val click_move: (Url) -> Unit,
+    val click_memo: (String) -> Unit
 ) : ListAdapter<Url, DetailAdapter.ViewHolder>(diffUtil) {
     inner class ViewHolder(val binding: ItemDetailBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Url) = with(binding) {
@@ -19,6 +21,9 @@ class DetailAdapter(
                 click_move(item)
             }
             thumbnail.load(item.thumbnail)
+            memo.setOnClickListener {
+                click_memo(item.memos_id)
+            }
         }
     }
 

@@ -42,6 +42,7 @@ class ApiRequestFactory @Inject constructor(
     class AuthInterceptor(private val token: String) : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response = with(chain) {
             val newRequest = request().newBuilder()
+                .addHeader("Content-Type", "application/json")
                 .addHeader("Authorization", "Bearer $token")
                 .build()
             proceed(newRequest)

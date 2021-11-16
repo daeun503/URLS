@@ -104,6 +104,7 @@ class AuthActivity : AppCompatActivity() {
         val tv = signInButton.getChildAt(0) as (android.widget.TextView)
         tv.text = "Please Add Google Login"
         signInButton.setOnClickListener {
+            logout()
             signIn()
         }
 
