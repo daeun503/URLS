@@ -6,12 +6,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.ui.input.key.Key.Companion.F
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.keelim.free.R
 import com.keelim.free.databinding.FragmentSettingBinding
+import com.keelim.free.ui.auth.AuthActivity
 import com.keelim.free.ui.inject.InjectActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -50,16 +54,17 @@ class SettingFragment : BottomSheetDialogFragment() {
             findNavController().navigate(R.id.aboutFragment)
         }
 
+        signOut.setOnClickListener{
+            dismiss()
+            Firebase.auth.signOut()
+            startActivity(Intent(requireActivity(), AuthActivity::class.java))
+            requireActivity().finish()
+        }
+
         homepage.setOnClickListener {
             dismiss()
             startActivity(Intent(requireActivity(), InjectActivity::class.java))
-        }
-
-        signOut.setOnClickListener{
-            dismiss()
-            startActivity(Intent(Intent.ACTION_VIEW).apply {
-                Uri.parse(getString(R.string.git_lab_address))
-            })
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.git_lab_address))))
         }
 
         openSourceLicensesButton.setOnClickListener {
