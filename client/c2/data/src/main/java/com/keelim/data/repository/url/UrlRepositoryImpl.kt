@@ -90,7 +90,7 @@ class UrlRepositoryImpl @Inject constructor(
             val result = response.body()?.urls!!.map {
                 Url(
                     url = it.url,
-                    thumbnail = it.thumbnail,
+                    thumbnail = it.thumbnail.orEmpty(),
                     tags = it.tags,
                     memos_id = it.memosId,
                 )

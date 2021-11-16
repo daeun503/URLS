@@ -129,7 +129,7 @@ dependencies {
     debugImplementation("com.facebook.soloader:soloader:0.10.1")
 
     releaseImplementation("com.facebook.flipper:flipper-noop:0.119.0")
-
+    implementation("kr.co.prnd:persistBottomSheetFragment:1.0.0")
 }
 
 kapt {
