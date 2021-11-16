@@ -15,6 +15,7 @@ class MemoAdapter : ListAdapter<Memo, RecyclerView.ViewHolder>(diffUtil) {
         RecyclerView.ViewHolder(binding.root) {
         fun leftBind(item: Memo) = with(binding) {
             chatItemLeftText.text = item.content
+            date.text = "date: ${item.updatedAt}"
         }
     }
 
@@ -22,6 +23,7 @@ class MemoAdapter : ListAdapter<Memo, RecyclerView.ViewHolder>(diffUtil) {
         RecyclerView.ViewHolder(binding.root) {
         fun rightBinds(item: Memo) = with(binding) {
             chatItemRightText.text = item.content
+            date.text = "date: ${item.updatedAt}"
         }
     }
 

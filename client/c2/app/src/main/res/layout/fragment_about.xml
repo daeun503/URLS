@@ -85,7 +85,7 @@
         android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/github">
+        app:layout_constraintTop_toBottomOf="@+id/gitlab">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -94,7 +94,7 @@
             android:gravity="center_vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/github">
+            app:layout_constraintTop_toBottomOf="@+id/gitlab">
 
             <ImageView
                 android:layout_width="wrap_content"

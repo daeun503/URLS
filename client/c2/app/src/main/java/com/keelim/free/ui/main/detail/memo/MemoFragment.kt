@@ -10,6 +10,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearSnapHelper
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.keelim.data.model.MemoState
 import com.keelim.free.R
@@ -51,6 +53,11 @@ class MemoFragment @Inject constructor(
     }
 
     private fun initViews() = with(binding){
+        (dialog as? BottomSheetDialog)?.behavior?.apply {
+            isFitToContents = false
+            state = BottomSheetBehavior.STATE_HALF_EXPANDED
+        }
+
         memoRecycler.apply {
             itemAnimator = SpringAddItemAnimator()
             adapter = memoAdapter.apply {
