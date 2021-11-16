@@ -32,7 +32,8 @@ class DetailActivity : AppCompatActivity() {
             },
             click_memo = {
                 MemoFragment(it).show(supportFragmentManager, "memo")
-            }
+            },
+            this
         )
     }
 
