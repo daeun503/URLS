@@ -4,6 +4,7 @@ import com.keelim.data.model.CallResult
 import com.keelim.data.model.Folder
 import com.keelim.data.model.dash.Dash
 import com.keelim.data.model.fold.Memo
+import com.keelim.data.model.notification.Release
 import com.keelim.data.model.open.Url
 import com.keelim.data.repository.url.UrlRepository
 import timber.log.Timber
@@ -53,5 +54,11 @@ class UrlUseCase(
 
     suspend fun getRecommended(): List<Url> {
         return emptyList()
+    }
+
+    suspend fun getRelease(): List<Release>{
+        val result = urlRepository.getRelease()
+        Timber.d("folderUrlMe $result")
+        return result
     }
 }

@@ -6,6 +6,7 @@ import com.keelim.data.model.Folder
 import com.keelim.data.model.auth.User
 import com.keelim.data.model.dash.Dash
 import com.keelim.data.model.fold.Memo
+import com.keelim.data.model.notification.Release
 import com.keelim.data.model.open.Url
 import com.keelim.data.response.MyUrlResponse
 import com.keelim.di.IoDispatcher
@@ -201,5 +202,25 @@ class UrlRepositoryImpl @Inject constructor(
             Timber.e(e)
         }
         return@withContext User("", "", "")
+    }
+
+    override suspend fun getRelease(): List<Release> = withContext(dispatcher) {
+        try {
+            val response = apiRequestFactory.retrofit.getRelease()
+            val result = response.body()?.mapIndexed { index, release ->
+                Release(
+                    release.date,
+                    release.description,
+                    release.title,
+                    release.version
+                )
+            }
+            Timber.d("성공한 데이터 $result")
+            return@withContext result!!
+        } catch (e: Exception) {
+            Timber.e(e)
+        }
+        Timber.d("성공하지 않는 데이터")
+        return@withContext emptyList()
     }
 }

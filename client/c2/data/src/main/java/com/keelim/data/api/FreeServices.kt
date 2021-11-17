@@ -5,6 +5,7 @@ import com.keelim.data.model.open.Url
 import com.keelim.data.response.FolderResponse
 import com.keelim.data.response.MemoResponse
 import com.keelim.data.response.MyUrlResponse
+import com.keelim.data.response.ReleaseResponse
 import com.keelim.data.response.URLResponse
 import com.keelim.data.response.notification.NotificationResponse
 import retrofit2.Response
@@ -45,7 +46,8 @@ interface FreeServices {
         @Path("id") id:String
     ): Response<MemoResponse>
 
-
+    @GET("/other")
+    suspend fun getRelease():Response<List<ReleaseResponse>>
 
 //
 //  @Headers("Content-Type: application/json")
