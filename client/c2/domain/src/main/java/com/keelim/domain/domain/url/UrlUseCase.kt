@@ -2,6 +2,7 @@ package com.keelim.domain.domain.url
 
 import com.keelim.data.model.CallResult
 import com.keelim.data.model.Folder
+import com.keelim.data.model.Recommend
 import com.keelim.data.model.dash.Dash
 import com.keelim.data.model.fold.Memo
 import com.keelim.data.model.notification.Release
@@ -43,6 +44,12 @@ class UrlUseCase(
     suspend fun folderUrlMe(): Dash {
         val result = urlRepository.folderUrl()
         Timber.d("folderUrlMe $result")
+        return result
+    }
+
+    suspend fun getRecommend(): List<Recommend>{
+        val result = urlRepository.getRecommend()
+        Timber.d("getRecommend $result")
         return result
     }
 

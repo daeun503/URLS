@@ -3,6 +3,7 @@ package com.keelim.data.repository.url
 import com.keelim.data.api.ApiRequestFactory
 import com.keelim.data.model.CallResult
 import com.keelim.data.model.Folder
+import com.keelim.data.model.Recommend
 import com.keelim.data.model.auth.User
 import com.keelim.data.model.dash.Dash
 import com.keelim.data.model.fold.Memo
@@ -116,7 +117,6 @@ class UrlRepositoryImpl @Inject constructor(
             return@withContext Dash(
                 result.size,
                 response.body()?.size ?: 0,
-                ""
             )
         } catch (e: Exception) {
             Timber.e(e)
@@ -125,8 +125,24 @@ class UrlRepositoryImpl @Inject constructor(
         return@withContext Dash(
             0,
             0,
-            ""
         )
+    }
+
+    override suspend fun getRecommend(): List<Recommend>  = withContext(dispatcher){
+        try {
+            val response = apiRequestFactory.retrofit.getRecommend()
+            val result = response.body()?.map {
+                Recommend(
+                    it
+                )
+            }
+            Timber.d("성공한 데이터 $result")
+            return@withContext result!!
+        } catch (e: Exception) {
+            Timber.e(e)
+        }
+        Timber.d("성공하지 않는 데이터")
+        return@withContext emptyList()
     }
 
     override suspend fun folderNewUrl(

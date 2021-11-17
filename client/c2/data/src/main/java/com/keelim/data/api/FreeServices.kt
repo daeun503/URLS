@@ -5,6 +5,7 @@ import com.keelim.data.model.open.Url
 import com.keelim.data.response.FolderResponse
 import com.keelim.data.response.MemoResponse
 import com.keelim.data.response.MyUrlResponse
+import com.keelim.data.response.RecommendResponse
 import com.keelim.data.response.ReleaseResponse
 import com.keelim.data.response.URLResponse
 import com.keelim.data.response.notification.NotificationResponse
@@ -48,6 +49,9 @@ interface FreeServices {
 
     @GET("/other")
     suspend fun getRelease():Response<List<ReleaseResponse>>
+
+    @GET("/recommend?count=10")
+    suspend fun getRecommend():Response<List<String>>
 
 //
 //  @Headers("Content-Type: application/json")
