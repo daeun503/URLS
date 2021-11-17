@@ -9,6 +9,8 @@ import com.keelim.data.model.dash.Dash
 import com.keelim.data.model.fold.Memo
 import com.keelim.data.model.notification.Release
 import com.keelim.data.model.open.Url
+import com.keelim.data.request.NewMemoRequest
+import com.keelim.data.request.NewUrlRequest
 import com.keelim.data.response.MyUrlResponse
 import com.keelim.di.IoDispatcher
 import javax.inject.Inject
@@ -240,5 +242,38 @@ class UrlRepositoryImpl @Inject constructor(
         }
         Timber.d("성공하지 않는 데이터")
         return@withContext emptyList()
+    }
+
+    override suspend fun newUrl(folderId: String, url: String, change: List<String>): String =
+        withContext(dispatcher) {
+            try {
+
+                val response = apiRequestFactory.retrofit.postNewUrl(folderId, NewUrlRequest(
+                    url,
+                    change
+                ))
+                Timber.d("제대로 된 응답 ${response.body()}")
+                val result = response.body()!!.urls.last().memosId
+                return@withContext result
+            } catch (e: Exception) {
+                Timber.e(e)
+            }
+            Timber.d("성공하지 않는 데이터")
+            return@withContext ""
+        }
+
+    override suspend fun newMemo(memoId: String, memo: String): String  = withContext(dispatcher){
+        try {
+            val response = apiRequestFactory.retrofit.postNewMemo(memoId, NewMemoRequest(
+                memo,
+                memo
+            ))
+            val result = response.body()!!.urls.last().memosId
+            return@withContext result
+        } catch (e: Exception) {
+            Timber.e(e)
+        }
+        Timber.d("성공하지 않는 데이터")
+        return@withContext ""
     }
 }

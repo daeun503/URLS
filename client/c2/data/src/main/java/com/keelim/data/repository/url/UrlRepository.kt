@@ -37,4 +37,6 @@ interface UrlRepository {
     suspend fun submitUrl(token: String, url: String): CallResult
     suspend fun tokenCheck(token: String): User
     suspend fun getRelease(): List<Release>
+    suspend fun newUrl(folderId: String, url: String, change: List<String>): String
+    suspend fun newMemo(memoId:String, memo:String): String
 }

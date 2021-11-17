@@ -68,4 +68,14 @@ class UrlUseCase(
         Timber.d("folderUrlMe $result")
         return result
     }
+
+    suspend fun newUrl(folderId: String, url: String, change: List<String>): String{
+        val result = urlRepository.newUrl(folderId, url, change)
+        Timber.d("folderUrlMe $result")
+        return result
+    }
+
+    suspend fun newMemo(memosId: String, memo: String) {
+        urlRepository.newMemo(memosId, memo)
+    }
 }

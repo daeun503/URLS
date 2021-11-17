@@ -52,7 +52,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inject_field"
             android:layout_width="match_parent"
-            android:hint="URL 입력.."
+            android:hint="메모를 입력해주세요"
             android:maxLines="1"
             android:inputType="text"
             android:layout_height="60dp" />
@@ -91,7 +91,7 @@
             android:id="@+id/tag_inject"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:hint="tag 입력"
+            android:hint="tag 입력 (여러 개를 입력하려면 콤마를.."
             android:inputType="text"
             android:maxLines="1" />
 
@@ -105,5 +105,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_tags_2" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:text="Submit"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tags" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

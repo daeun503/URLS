@@ -32,14 +32,19 @@ class InjectViewModel @Inject constructor(
         }
     }
 
-    fun submitUrl(url:String, memo:String, folderId:String, tags:List<String>) = viewModelScope.launch {
-        _state.emit(UrlState.Loading)
-        runCatching {
-            // 새로운 URL 을 폴더에 생성
-        }.onSuccess {
-            // 그 url 에 메모 추가하기
-        }.onFailure {
-            
-        }
+    fun submitUrl(url: String, memo: String, folderId: String, tags: String) =
+        viewModelScope.launch {
+            _state.emit(UrlState.Loading)
+            val change = tags.split(",").map {
+                it.trim()
+            }
+            runCatching {
+                val it = urlUseCase.newUrl(folderId, url, change)
+                urlUseCase.newMemo(it, memo)
+            }.onSuccess {
+                _state.emit(UrlState.Success2)
+            }.onFailure {
+                _state.emit(UrlState.Error("에러를 표시해줍니다."))
+            }
     }
 }
