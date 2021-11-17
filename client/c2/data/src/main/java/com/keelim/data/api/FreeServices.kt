@@ -11,7 +11,6 @@ import com.keelim.data.response.URLResponse
 import com.keelim.data.response.notification.NotificationResponse
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Path
 
@@ -51,7 +50,7 @@ interface FreeServices {
     suspend fun getRelease():Response<List<ReleaseResponse>>
 
     @GET("/recommend?count=10")
-    suspend fun getRecommend():Response<List<String>>
+    suspend fun getRecommend():Response<List<RecommendResponse>>
 
 //
 //  @Headers("Content-Type: application/json")

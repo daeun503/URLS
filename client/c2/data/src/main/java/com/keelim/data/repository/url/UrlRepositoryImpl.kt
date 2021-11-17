@@ -133,7 +133,9 @@ class UrlRepositoryImpl @Inject constructor(
             val response = apiRequestFactory.retrofit.getRecommend()
             val result = response.body()?.map {
                 Recommend(
-                    it
+                    it.title,
+                    it.url,
+                    it.ogImage,
                 )
             }
             Timber.d("성공한 데이터 $result")

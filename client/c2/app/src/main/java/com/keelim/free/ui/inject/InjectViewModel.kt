@@ -17,36 +17,29 @@ class InjectViewModel @Inject constructor(
     private val _state: MutableStateFlow<UrlState> = MutableStateFlow(UrlState.UnInitialized)
     val state: StateFlow<UrlState> get() = _state
 
-    fun inject(token: String, url: String) = viewModelScope.launch {
+    init{
+        init()
+    }
+
+    fun init() = viewModelScope.launch {
         _state.emit(UrlState.Loading)
-        val result = kotlin.runCatching { urlUseCase.share(token) }
-
-        when {
-            result.isSuccess -> {
-                _state.emit(UrlState.Success)
-            }
-
-            result.isFailure -> {
-                _state.emit(UrlState.Error("에러를 표시해줍니다."))
-            }
-
-            else -> {
-                _state.emit(UrlState.Error("에러를 표시해줍니다."))
-            }
+        kotlin.runCatching {
+            urlUseCase.myFolder()
+        }.onSuccess {
+            _state.emit(UrlState.Success1(it))
+        }.onFailure {
+            _state.emit(UrlState.Error("에러를 표시해줍니다."))
         }
     }
 
-    fun submitUrl(token: String, url: String) = viewModelScope.launch {
+    fun submitUrl(url:String, memo:String, folderId:String, tags:List<String>) = viewModelScope.launch {
         _state.emit(UrlState.Loading)
-        val result = kotlin.runCatching { urlUseCase.submitUrl(token, url) }
-        when {
-            result.isSuccess -> {
-                _state.emit(UrlState.Success)
-            }
-            result.isFailure -> {
-                _state.emit(UrlState.Error("에러를 표시해줍니다."))
-            }
-            else -> Unit
+        runCatching {
+            // 새로운 URL 을 폴더에 생성
+        }.onSuccess {
+            // 그 url 에 메모 추가하기
+        }.onFailure {
+            
         }
     }
 }

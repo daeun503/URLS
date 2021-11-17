@@ -76,13 +76,16 @@ class DashFragment : Fragment() {
                 when (it) {
                     is DashState.Error -> {
                     }
-                    is DashState.Loading -> requireActivity().showToast("로딩 중입니다.")
+                    is DashState.Loading -> {
+                        binding.progress.visibility = View.VISIBLE
+                    }
                     is DashState.Success -> {
                         binding.descSection1.text = it.data.urls.toString()
                         binding.descSection2.text = it.data.folders.toString()
                     }
                     is DashState.Success2 -> {
                         recommendAdapter.submitList(it.data)
+                        binding.progress.visibility = View.INVISIBLE
                     }
                     is DashState.UnInitialized -> Unit
                 }

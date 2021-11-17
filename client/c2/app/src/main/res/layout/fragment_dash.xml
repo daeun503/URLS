@@ -28,6 +28,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/section1"
         android:layout_width="0dp"
@@ -137,7 +147,8 @@
         android:layout_height="300dp"
         android:layout_marginTop="10dp"
         app:cardCornerRadius="20dp"
-        app:cardElevation="20dp"
+        app:cardElevation="5dp"
+        android:padding="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title_recommend">
 
@@ -164,18 +175,6 @@
         android:textColor="@color/white"
         android:layout_height="300dp"/>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/title_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/pretendard"
-        android:text="Search!!"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/section3" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/search_bar"
@@ -185,16 +184,31 @@
         android:clickable="true"
         android:focusable="true"
         app:cardCornerRadius="20dp"
-        app:cardElevation="1dp"
+        app:cardElevation="10dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_search"
+        app:layout_constraintTop_toBottomOf="@id/btn_home"
         app:strokeColor="@android:color/black"
         app:strokeWidth="1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/title_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/pretendard"
+                android:text="Search!!"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                 />
+
 
             <ImageView
                 android:id="@+id/search_icon"
@@ -204,7 +218,7 @@
                 android:src="@drawable/ic_search"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/title_search" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

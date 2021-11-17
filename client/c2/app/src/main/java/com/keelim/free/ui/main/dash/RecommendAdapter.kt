@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.keelim.data.model.Recommend
-import com.keelim.free.R
 import com.keelim.free.databinding.ItemRecommendBinding
 
 class RecommendAdapter(
@@ -17,14 +16,14 @@ class RecommendAdapter(
     inner class ViewHolder(private val binding: ItemRecommendBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Recommend, position: Int) = with(binding) {
-
-
             index.text = (position).toString()
-            url.text = item.url
 
-            url.setOnClickListener {
-                click(item.url)
+            url.text = if (item.title == null || item.title!!.length <= 3) {
+                item.url
+            } else {
+                item.title
             }
+            click(item.url)
         }
     }
 
