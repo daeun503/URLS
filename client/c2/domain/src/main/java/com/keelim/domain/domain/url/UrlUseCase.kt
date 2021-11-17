@@ -61,4 +61,13 @@ class UrlUseCase(
         Timber.d("folderUrlMe $result")
         return result
     }
+
+    suspend fun getSearchResult(): List<Url>{
+        val folderResult = urlRepository.allFolder()
+        val result = ArrayList<Url>()
+        folderResult.forEach {
+
+        }
+        return emptyList()
+    }
 }
