@@ -23,7 +23,7 @@ import com.keelim.free.databinding.ActivityMenuBinding
 import com.keelim.free.databinding.AppBarMenuBinding
 import com.keelim.free.databinding.ContentMenuBinding
 import com.keelim.free.databinding.NavHeaderMenuBinding
-import com.keelim.free.ui.main.inject.InjectFragment2
+import com.keelim.free.ui.main.inject.PersistBottomSheetFragment
 import com.keelim.free.ui.main.search.SearchResultsActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -45,7 +45,7 @@ class MenuActivity : AppCompatActivity() {
 
     private val auth by lazy { Firebase.auth.currentUser!!}
 
-    private lateinit var injectFragment2: InjectFragment2
+    private lateinit var persistBottomSheetFragment: PersistBottomSheetFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -105,7 +105,7 @@ class MenuActivity : AppCompatActivity() {
     }
 
     private fun initViews() = with(binding) {
-        injectFragment2 = InjectFragment2.show(supportFragmentManager, R.id.view_bottom_sheet)
+        persistBottomSheetFragment = PersistBottomSheetFragment.show(supportFragmentManager, R.id.view_bottom_sheet)
         with(headerBinding){
             imageView.load(auth.photoUrl)
             headerUsername.text = auth.displayName
