@@ -56,6 +56,10 @@ class DetailActivity : AppCompatActivity() {
         }
         val snapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(detailRecycler)
+
+        btnUp.setOnClickListener {
+            detailRecycler.layoutManager!!.scrollToPosition(0)
+        }
     }
 
     private fun initData() {

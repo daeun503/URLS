@@ -58,18 +58,22 @@ class RecommendationFragment : Fragment() {
                         Snackbar.make(binding.root, "데이터를 불러오고 있습니다. ", Snackbar.LENGTH_SHORT)
                             .show()
                         viewModel.init()
+                        binding.progress.visibility = View.VISIBLE
                     }
                     is MainState.Loading -> {
                         viewPagerAdapter.setData(emptyList())
                     }
                     is MainState.Success -> {
+                        binding.progress.visibility = View.INVISIBLE
                         if (viewModel.basic.value!!.isNotEmpty()) {
                             viewPagerAdapter.setData(viewModel.basic.value!!)
                         } else {
                             viewPagerAdapter.setData(it.data)
                         }
                     }
-                    is MainState.Error -> Unit
+                    is MainState.Error -> {
+                        binding.progress.visibility = View.INVISIBLE
+                    }
                 }
             }
         }
