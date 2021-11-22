@@ -58,9 +58,6 @@
             android:name=".ui.auth.AuthActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.splash.TutorialActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.main.search.SearchResultsActivity"
             android:exported="true" />
 
@@ -74,9 +71,6 @@
                 android:value="androidx.startup" />
             <meta-data
                 android:name="com.keelim.free.initializer.CoilInitializer"
-                android:value="androidx.startup" />
-            <meta-data
-                android:name="com.keelim.free.initializer.PlutoInitializer"
                 android:value="androidx.startup" />
         </provider>
     </application>

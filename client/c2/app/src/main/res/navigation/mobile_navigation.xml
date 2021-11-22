@@ -45,5 +45,9 @@
         android:id="@+id/notificationFragment"
         android:name="com.keelim.free.ui.main.notification.NotificationFragment"
         android:label="NotificationFragment" />
+    <fragment
+        android:id="@+id/recommendationFragment"
+        android:name="com.keelim.free.ui.main.recommendation.RecommendationFragment"
+        android:label="RecommendationFragment" />
 
 </navigation>

@@ -27,6 +27,8 @@
             android:fontFamily="@font/pretendard"
             android:textColor="@color/black"
             android:textSize="16sp"
+            android:maxLines="1"
+            android:lines="1"
             app:layout_constraintEnd_toStartOf="@id/move"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -34,6 +36,7 @@
 
         <ImageView
             android:id="@+id/move"
+            android:scaleType="fitXY"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_arrow_right_alt_24"
