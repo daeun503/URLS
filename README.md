@@ -1,61 +1,129 @@
-# S05P31B201
+# 🎗 URLS : 똑똑하게 저장하고 나누는 방법
 
-![image-1.png](assets/image-1.png)
+![start](README.assets/start.PNG)
 
-## 프로젝트 명: URLS - 똑똑하게 저장하고 나누는 방법
+|             김재현 팀장             |               김문희                |               김우석                |               이다은                |               이두호                |
+| :---------------------------------: | :---------------------------------: | :---------------------------------: | :---------------------------------: | :---------------------------------: |
+| ![김재현](README.assets/김재현.png) | ![김문희](README.assets/김문희.png) | ![김우석](README.assets/김우석.png) | ![이다은](README.assets/이다은.png) | ![이두호](README.assets/이두호.png) |
+|               Client                |                 FE                  |             DevOps. FE              |                 BE                  |                 AI                  |
 
-## 팀명: 이글 아이팀
+- 서비스 명 : URLS
+- 개발 기간 : 2021.10.11 ~ 2021.11.19 (6주)
+- 팀명 : EAGLE_EYE
 
-## Preview
+<br/>
 
-![image-1.png](assets/image-1.png)
+# 🎇 주요 기능
 
-![image-2.png](assets/image-2.png)
+- url 저장 및 공유
+  - 개인/공유 폴더로 url 관리 및 공유
+  - url 저장 시 카테고리 및 태그를 함께 저장 가능
+  - url 주소/태그 검색 기능
+- url 추천 시스템
+  - url 입력시 관련한 태그 추천
+  - 저장한 url을 기반으로 사용자 성향을 분석하여 url 추천
+- 메모 및 하이라이트
+  - PC 웹페이지 / 안드로이드 앱에서 url 마다 메모 작성 가능
+  - 크롬 익스텐션에서 url의 문단을 하이라이트 하여 표시 가능
+- 다양한 플랫폼 제공
+  - 반응형 PC 웹페이지
+  - 안드로이드 앱
+  - 크롬 익스텐션
 
-![image-3.png](assets/image-3.png)
+<br/>
 
-![image-5.png](assets/image-5.png)
+# 🎞 구현
 
-## 기술 스택
+## 🖥 웹
 
-![image-4.png](assets/image-4.png)
+### 1. URL 추가 / 삭제 
 
-### Cient
-- Android
-- chrome-extensions
+![url추가삭제](README.assets/url추가삭제.gif)
 
-### Frontend
-- Vue with Quasar
+### 2. 팀원 추가 / 삭제
 
-### Backend
-- FastAPI
+![팀원추가삭제](README.assets/팀원추가삭제.gif)
 
-### Infra
-- Kubernetes
-- mongo db 
-- elasticsearch
-- Nginx
+### 3. URL 추천
 
-## 팀원
+![url추천](README.assets/url추천.gif)
 
-- 김재현 (client)
-- 김문희 (FE)
-- 김우석 (DevOps. FE)
-- 이다은 (BE)
-- 이두호 (AI)
+### 4. 검색
 
-## Git Flow
+![검색](README.assets/검색.gif)
 
-![우린 Git-flow를 사용하고 있어요 | 우아한형제들 기술블로그](assets/git-flow_overall_graph.png)
+### 5. 메모/하이라이트
 
-## Git Convention
+![메모하이라이트](README.assets/메모하이라이트.gif)
 
-- **ADD :** 코드나 테스트, 예제, 문서 등의 추가가 있을 때 사용합니다
-- **REMOVE :** 코드의 삭제가 있을 때 사용
-- **UPDATE :** 원래도 정상적으로 동작하고 있었지만, 수정, 추가, 보완을 한다는 개념입니다.
-- **RENAME :** 파일/폴더 이름 변경이 있을 때 사용합니다.
-- **FIX :** 보통 올바르지 않은 동작을 고친 경우에 사용합니다.
-- **MOVE :** 코드/폴더 의 이동이 있을 때 사용합니다.
-- **SET :** 변수 값을 변경하는 등의 작은 수정에 주로 사용합니다.
-- **REFACTOR :** 리팩토링할 때 사용합니다.
-- **DOCS :** 사이트/문서 업그레이드 할 때 사용합니다.
+<br/>
+
+## 📱 안드로이드
+
+### 1. 로그인
+
+![앱로그인](README.assets/앱로그인.gif)
+
+### 2. url 추가
+
+![앱url추가](README.assets/앱url추가.gif)
+
+### 3. url 추가 (메모 드래그 해서 추가)
+
+![앱url추가(메모함께)](README.assets/앱url추가(메모함께).gif)
+
+### 3. url 확인
+
+![앱url확인](README.assets/앱url확인.gif)
+
+### 4. 추천 url
+
+![앱추천](README.assets/앱추천.gif)
+
+<br/>
+
+## 📟 크롬 익스텐션
+
+### 1. URL 추가 
+
+![익스텐션url추가](README.assets/익스텐션url추가.gif)
+
+### 2. 폴더 확인 및 이동
+
+![익스텐션폴더확인](README.assets/익스텐션폴더확인.gif)
+
+### 3. 하이라이트
+
+![익스텐션하이라이트](README.assets/익스텐션하이라이트.gif)
+
+### 4. 공지사항 / 정보
+
+![익스텐션공지사항](README.assets/익스텐션공지사항.gif)
+
+<br/>
+
+# 🎈 실행 방법
+
+- 웹 : https://k5b201.p.ssafy.io/
+- 안드로이드 앱 : apk 다운로드 링크 (추가 예정)
+- 크롬 익스텐션 (앱 스토어는 심사 기간 때문에 아직 X. 다음 방법으로 직접 로드)
+  - `client/c1` 폴더로 이동하여 `npm install` 한 후, `npm run dev` 를 하면 `dist` 폴더가 생성됨
+  - 크롬 브라우저의 우측 상단 `...` 을 눌러 `도구 더보기` > `확장 프로그램` 으로 이동
+  - 개발자 모드 on 한 후, `압축해제된 확장 프로그램을 로드합니다.` 를 눌러 `dist`파일 업로드 
+
+<br/>
+
+# 🖼 기술스택
+
+![image-20211123130120928](README.assets/image-20211123130120928.png)
+
+- Client : Android, chrome-extensions
+- Frontend : Vue with Quasar
+- Backend : FastAPI
+- Infra : Kubernetes, mongoDB, elasticsearch, Nginx
+
+<br/>
+
+# 🏆수상
+
+## 🏅 삼성 청년 SW 아카데미(SSAFY) 자율 프로젝트 대전 반 ?등

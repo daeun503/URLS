@@ -45,7 +45,9 @@ export function folderCreateUser(folderUserData) {
 
 // 폴더 유저 삭제
 export function folderDeleteUser(folderUserData) {
-  return api.delete(`/folder/${folderUserData.folder_id}/user?email=${folderUserData.email}`);
+  return api.delete(
+    `/folder/${folderUserData.folder_id}/user?email=${folderUserData.email}`
+  );
 }
 
 // 내 모든 폴더에서 내가 작성한 url 검색
@@ -70,7 +72,10 @@ export function urlCreate(folderId, urlData) {
 
 // 폴더 내 특정 url 삭제
 export function urlDelete(urlData) {
-  return api.delete(`/folder/${urlData.folder_id}/url?url=${urlData.url}`);
+  const data = {
+    url: urlData.url
+  };
+  return api.put(`/folder/${urlData.folder_id}/url/delete`, data);
 }
 
 // url에 달린 모든 메모 조회
@@ -94,4 +99,8 @@ export function memoPut(memoData) {
 // url memos 리스트에 memo 삭제
 export function memoDelete(memoData) {
   return api.delete(`/memo/${memoData.memos_id}/${memoData.memo_id}`);
+}
+
+export function leaveFolder(folderId) {
+  return api.delete(`/folder/${folderId}/me`)
 }
